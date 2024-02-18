@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 @Entity
+@Table
 public class Slide {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

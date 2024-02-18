@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import java.util.List;
 
 @Entity
+@Table
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

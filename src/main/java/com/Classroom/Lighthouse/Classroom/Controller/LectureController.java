@@ -17,19 +17,21 @@ public class LectureController {
     @Autowired
     private LectureService lectureService;
 
-    @GetMapping
+    @GetMapping("/abc")
     public List<Lecture> getAllLectures() {
         return lectureService.getAllLectures();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Lecture> getLectureById(@PathVariable Long id) {
+        System.out.println("Fetching lecture with ID: " + id);
         Optional<Lecture> lecture = lectureService.getLectureById(id);
         return lecture.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Lecture> createLecture(@Valid @RequestBody Lecture lecture) {
+//        System.out.println(lecture);
         Lecture createdLecture = lectureService.createLecture(lecture);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdLecture);
     }

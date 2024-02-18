@@ -14,7 +14,7 @@ public class LectureService {
     private LectureRepository lectureRepository;
 
     public List<Lecture> getAllLectures() {
-        return lectureRepository.findAll();
+        return lectureRepository.findAll ();
     }
 
     public Optional<Lecture> getLectureById(Long id) {
