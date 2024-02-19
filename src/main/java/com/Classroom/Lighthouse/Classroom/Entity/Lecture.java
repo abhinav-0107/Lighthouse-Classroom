@@ -1,5 +1,6 @@
 package com.Classroom.Lighthouse.Classroom.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -11,14 +12,15 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column
+    @NotBlank(message = "Title cannot be blank")
+    @Column(nullable = false)
     private String title;
-
-    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL,orphanRemoval=true)
     private List<Slide> slides;
 
     @ManyToMany
+    @JsonIgnore
     private List<Teacher> teachers;
 
     public Long getId() {

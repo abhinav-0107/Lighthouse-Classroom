@@ -16,6 +16,12 @@ public class TeacherController {
     @Autowired
     private TeacherRepository teacherRepository;
 
+
+    /**
+        Endpoint to retrieve a specific teacher by their ID.
+        id- ID of the teacher to retrieve
+        return ResponseEntity containing the requested Teacher or a 404 Not Found status
+    */
     @GetMapping("/{id}")
     public ResponseEntity<Teacher> getTeacher(@PathVariable Long id) {
         Optional<Teacher> teacherOptional = teacherRepository.findById(id);
@@ -26,12 +32,25 @@ public class TeacherController {
         }
     }
 
+
+    /**
+        Endpoint to create a new teacher.
+       teacher- Teacher object to be created
+        return ResponseEntity containing the created Teacher and a 201 Created status
+    */
     @PostMapping
     public ResponseEntity<Teacher> createTeacher(@Valid @RequestBody Teacher teacher) {
         Teacher savedTeacher = teacherRepository.save(teacher);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTeacher);
     }
 
+
+    /**
+        Endpoint to update an existing teacher by their ID.
+        id- ID of the teacher to update
+         teacherDetails- Updated Teacher object
+        return ResponseEntity containing the updated Teacher or a 404 Not Found status
+    */
     @PutMapping("/{id}")
     public ResponseEntity<Teacher> updateTeacher(@PathVariable Long id, @Valid @RequestBody Teacher teacherDetails) {
         Optional<Teacher> teacherOptional = teacherRepository.findById(id);
@@ -46,6 +65,12 @@ public class TeacherController {
         }
     }
 
+
+    /**
+        Endpoint to delete a specific teacher by their ID.
+        id- ID of the teacher to delete
+        return ResponseEntity with a 200 OK status if deleted, or a 404 Not Found status
+    */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTeacher(@PathVariable Long id) {
         Optional<Teacher> teacherOptional = teacherRepository.findById(id);
@@ -57,3 +82,4 @@ public class TeacherController {
         }
     }
 }
+

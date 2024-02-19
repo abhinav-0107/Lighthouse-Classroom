@@ -1,5 +1,6 @@
 package com.Classroom.Lighthouse.Classroom.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -11,10 +12,11 @@ public class Slide {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message="content cannot be empty")
     private String content;
 
     @ManyToOne
+    @JsonIgnore
     private Lecture lecture;
 
     public Long getId() {

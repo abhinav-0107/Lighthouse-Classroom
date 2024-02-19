@@ -1,5 +1,6 @@
 package com.Classroom.Lighthouse.Classroom.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -13,13 +14,14 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "name cannot be blank")
     private String name;
 
-    @Positive
+    @Positive(message="please fill a value greater than zero")
     private double salary;
 
     @ManyToMany(mappedBy = "teachers")
+    @JsonIgnore
     private List<Lecture> lectures;
 
     public Long getId() {
