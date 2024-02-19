@@ -56,7 +56,7 @@ public class LectureService {
                 .orElseThrow(() -> new EntityNotFoundException("Lecture not found with id: " + id));
 
         // Update existingLecture fields with values from updatedLecture
-
+        existingLecture.setTitle(updatedLecture.getTitle());
         return lectureRepository.save(existingLecture);
     }
 
